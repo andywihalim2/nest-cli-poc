@@ -1,0 +1,59 @@
+$breakpoints:(
+  's': 0,
+  'md': 768px,
+  'lg': 1024px,
+  'xl': 1280px,
+); 
+
+$btn:(
+  'background': green,
+  'border-color': green,
+  'color': white,
+  'hover-background': lime,
+  'disabled-background': lightgrey,
+  'ghost': (
+    'background': white,
+    'border-color': green,
+    'color': green,
+  ),
+  'text': (
+    'background': white,
+    'border-color': white,
+    'color': green,
+  ),
+  'colors': (
+    'alternate':(
+      'background': grey,
+      'border-color': grey,
+      'color': white,
+      'ghost': (
+        'background': white,
+        'border-color': grey,
+        'color': grey,
+      ),
+      'text': (
+        'background': white,
+        'border-color': white,
+        'color': grey,
+      )
+    )
+  ),
+  'height': 40px,
+  'padding-inline': 7px,
+  'border-radius': 8px,
+  'font-size': .875rem,
+  'sizes':(
+    'xsmall': (
+      'height': 24px,
+      'font-size': .75rem
+    ),
+    'small': (
+      'height': 32px,
+      'font-size': .75rem
+    ),
+    'large': (
+      'height': 48px,
+      'font-size': 1rem
+    )
+  )
+);

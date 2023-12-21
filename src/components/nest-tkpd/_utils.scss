@@ -1,0 +1,81 @@
+@function safe-nth($list, $index) {
+  @if length($list) >= $index {
+    @return nth($list, $index);
+  } @else {
+    @return null;
+  }
+}
+
+@function safe-get($map, $keys...) {
+  $result: $map;
+  @each $key in $keys {
+    @if type-of($result) == map and map-has-key($result, $key) {
+      $result: map-get($result, $key);
+    } @else {
+      @return null;
+    }
+  }
+  @return $result;
+}
+
+@function safe-merge($map1, $map2) {
+  $map1: if($map1 == null, (), $map1);
+  $map2: if($map2 == null, (), $map2);
+  $result: map-merge($map1, $map2);
+  @return $result;
+}
+
+@mixin safe-prop($variable, $value) {
+  @if $value != null {
+    #{$variable}: $value;
+  }
+}
+
+@mixin hover{
+  @media (hover:hover) and (pointer:fine){
+    &:hover{
+      @content;
+    }
+  }
+}
+
+@mixin breakpoint($breakpoint, $min-width) {
+  @if $min-width != 0 {
+    @media screen and (min-width: $min-width) {
+      @content;
+    }
+  } @else {
+    @content;
+  }
+}
+
+@mixin variant($type, $value) {
+  @if $value != "default" {
+    &[data-n-#{$type}=#{$value}] {
+      @content;
+    }
+  } @else {
+    @content;
+  }
+}
+
+$states: 'idle', 'hover', 'active', 'disabled';
+@mixin state($type) {
+  @if $type == "hover" {
+    @include hover {
+      @content;
+    }
+  }
+  @else if $type == "active" {
+    &:active {
+      @content;
+    }
+  }
+  @else if $type == "disabled" {
+    &[data-n-disabled], &:disabled {
+      @content;
+    }
+  } @else {
+    @content;
+  }
+}
